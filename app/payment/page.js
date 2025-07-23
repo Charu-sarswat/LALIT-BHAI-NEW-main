@@ -70,8 +70,8 @@ export default function Home() {
     // Data to be sent to the backend and Firestore
     const data = {
       name,
-      mobile,
-      amount,
+     phone: mobile, // <-- CORRECT
+      amount: Number(amount),
       userId,
       addressLine1: address.addressLine1,
       addressLine2: address.addressLine2,
