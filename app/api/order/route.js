@@ -30,6 +30,18 @@ export async function POST(req) {
   try {
     const reqData = await req.json();
     const merchantTransactionId = reqData.transactionId;
+    if (
+      !reqData.transactionId ||
+      !reqData.name ||
+      typeof reqData.amount !== "number" ||
+      reqData.amount <= 0 ||
+      !reqData.phone
+    ) {
+      return NextResponse.json(
+        { error: "Invalid request data" },
+        { status: 400 }
+      );
+    }
 
     const data = {
       merchantId: config.merchant_id,
